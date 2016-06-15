@@ -20,9 +20,14 @@ class CallCurl
     protected $curl = null;
 
     /**
-     * @var Object $parser PHP Class used for parse data before and after call
+     * @var Object $parserInput PHP Class used for parse data before call
      */
-    protected $parser = null;
+    protected $parserOutput = null;
+
+    /**
+     * @var Object $parserOutput PHP Class used for parse data after call
+     */
+    protected $parserInput = null;
 
     /**
      * @var string $url The url to call with curl
@@ -64,8 +69,9 @@ class CallCurl
      * 
      * Check dependancy
      * Initialise curl connection
+     * Check parsers
      */
-    public function __construct(&$parser = null)
+    public function __construct(&$parserOutput = null, &$parserInput = null)
     {
         //Check Dependancy
         $this->checkLib();
@@ -73,9 +79,12 @@ class CallCurl
         //Initialise curl
         $this->curl = curl_init();
 
-        //Check and initialise Parser
-        $this->checkParser($parser);
-        $this->parser = $parser;
+        //Check and initialise Parsers
+        $this->checkParser($parserOutput);
+        $this->checkParser($parserInput);
+        
+        $this->parserOutput = $parserOutput;
+        $this->parserInput  = $parserInput;
     }
 
     /**
@@ -264,13 +273,13 @@ class CallCurl
      */
     public function runCall()
     {
-        $this->parser->preFormatDatas($this->datas);
+        $this->parserOutput->preFormatDatas($this->datas);
 
         $options = $this->curlSetOptions();
         curl_setopt_array($this->curl, $options);
 
         $this->curlCall();
-        $this->parser->formatCallReturn($this->returnDatas);
+        $this->parserInput->formatCallReturn($this->returnDatas);
 
         return $this->returnDatas;
     }
