@@ -98,7 +98,7 @@ class CallCurl
     {
         //Check curl php extension
         if(!function_exists('curl_init')) {
-            throw new Exception('Please install or activate php-curl extension for use WPCurl plugin.');
+            throw new Exception('Please install or activate php-curl extension for use CallCurl plugin.');
         }
     }
 
@@ -129,14 +129,14 @@ class CallCurl
      * 
      * @param string $url : Url to call
      * 
-     * @return \bultonFr\WPCurl : Current class instance
+     * @return \bultonFr\CallCurl : Current class instance
      * 
      * @throws Exception : If parameter is not a string
      */
     public function setUrl($url)
     {
         if(!is_string($url)) {
-            throw new Exception('Url send to WPCurl should be a string variable');
+            throw new Exception('Url send to CallCurl should be a string variable');
         }
 
         $this->url = $url;
@@ -159,7 +159,7 @@ class CallCurl
      * 
      * @param mixed $datas
      * 
-     * @return \bultonFr\WPCurl : Current class instance
+     * @return \bultonFr\CallCurl : Current class instance
      */
     public function setDatas($datas)
     {
@@ -184,14 +184,14 @@ class CallCurl
      * 
      * @param string $method : The HTTP method to use
      * 
-     * @return \bultonFr\WPCurl : Current class instance
+     * @return \bultonFr\CallCurl : Current class instance
      * 
      * @throws Exception : If parameter is not a string
      */
     public function setHttpMethod($method)
     {
         if(!is_string($method)) {
-            throw new Exception('HTTP method send to WPCurl should be a string variable');
+            throw new Exception('HTTP method send to CallCurl should be a string variable');
         }
 
         $this->httpMethod = strtoupper($method);
@@ -205,14 +205,14 @@ class CallCurl
      * 
      * @param boolean $debug : Debug mode status
      * 
-     * @return \bultonFr\WPCurl : Current class instance
+     * @return \bultonFr\CallCurl : Current class instance
      * 
      * @throws Exception : If parameter is not a boolean
      */
     public function setDebug($debug)
     {
         if(!is_bool($debug)) {
-            throw new Exception('Debug status send to WPCurl should be a boolean variable');
+            throw new Exception('Debug status send to CallCurl should be a boolean variable');
         }
 
         $this->debug = $debug;
@@ -225,14 +225,14 @@ class CallCurl
      * 
      * @param type $checkSSL : check SSL status
      * 
-     * @return \bultonFr\WPCurl : Current class instance
+     * @return \bultonFr\CallCurl : Current class instance
      * 
      * @throws Exception : If parameter is not a boolean
      */
     public function setCheckSSL($checkSSL)
     {
         if(!is_bool($checkSSL)) {
-            throw new Exception('CheckSSL status send to WPCurl should be a boolean variable');
+            throw new Exception('CheckSSL status send to CallCurl should be a boolean variable');
         }
 
         $this->checkSSL = $checkSSL;
