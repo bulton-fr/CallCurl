@@ -1,0 +1,41 @@
+{
+    "name": "bulton-fr/CallCurl",
+    "type": "library",
+    "description": "Lib to simply use curl with PHP",
+    "keywords": [
+        "curl",
+        "php"
+    ],
+    "homepage": "https://github.com/bulton-fr/CallCurl",
+    "time": "2016-06-10",
+    "license": "LGPL-3.0",
+    "authors": [
+        {
+            "name": "Vermeulen Maxime / Bulton",
+            "homepage": "http://www.bulton.fr",
+            "email": "bulton.fr@bulton.fr"
+        }
+    ],
+    "support": {
+        "email": "support@bulton.fr",
+        "issues": "https://github.com/bulton-fr/bfw/issues",
+        "source": "https://github.com/bulton-fr/bfw"
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "ext-curl": "@stable"
+    },
+    "require-dev": {
+        "atoum/atoum": "~2.5"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "bultonFr\\CallCurl\\": [
+                "src/class",
+                "src/interfaces"
+            ],
+            "bultonFr\\CallCurl\\Parser\\" : "src/parser"
+        }
+    }
+}
