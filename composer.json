@@ -22,7 +22,7 @@
         "source": "https://github.com/bulton-fr/bfw"
     },
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.5.0",
         "ext-curl": "@stable"
     },
     "require-dev": {
