@@ -4,7 +4,7 @@ Lib to simply use curl with PHP
 
 ## Install with composer
 
-Download compsoer
+Download composer
 ```
 $ curl -s https://getcomposer.org/installer | php
 ```
