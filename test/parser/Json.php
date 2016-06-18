@@ -46,14 +46,14 @@ class Json extends atoum
             {
                 $datas = '';
                 $this->testedInstance->formatCallReturn($datas);
-            })->hasMessage('Syntax error');
+            });//->hasMessage('Syntax error'); PHP7.x msg != PHP 5.x msg
         
         $this->assert('preformat string data')
             ->exception(function() use ($instance)
             {
                 $datas = 'format Datas';
                 $this->testedInstance->formatCallReturn($datas);
-            })->hasMessage('Syntax error');
+            });//->hasMessage('Syntax error'); PHP7.x msg != PHP 5.x msg
         
         $datas = '[]';
         $this->assert('preformat empty array data')
