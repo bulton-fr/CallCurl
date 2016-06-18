@@ -278,7 +278,7 @@ class CallCurl
         $options = $this->curlSetOptions();
         curl_setopt_array($this->curl, $options);
 
-        $this->curlCall();
+        $this->getFromCurl();
         $this->parserInput->formatCallReturn($this->returnDatas);
 
         return $this->returnDatas;
@@ -296,23 +296,7 @@ class CallCurl
             CURLOPT_RETURNTRANSFER => true
         ];
 
-        if($this->httpMethod === 'GET') {
-            $datasUrl = urlencode($this->datas);
-
-            if(strpos($this->url, '?') !== false) {
-                $datasUrl = '&'.$datasUrl;
-            }
-            else {
-                $datasUrl = '?'.$datasUrl;
-            }
-
-            $options[CURLOPT_URL] .= $datasUrl;
-        }
-        elseif($this->httpMethod === 'POST') {
-            $options[CURLOPT_POST]       = true;
-            $options[CURLOPT_POSTFIELDS] = $this->datas;
-        }
-        //@TODO : Other http status
+        $this->curlOptionsAddDatas($options);
 
         if($this->debug === true) {
             $options[CURLOPT_HEADER]      = true;
@@ -327,13 +311,48 @@ class CallCurl
 
         return $options;
     }
+    
+    protected function curlOptionsAddDatas(&$options)
+    {
+        if(empty($this->datas)) {
+            return;
+        }
+        
+        if($this->httpMethod === 'GET') {
+            
+            if(is_string($this->datas)) {
+                $datasUrl = urlencode($this->datas);
+            } else {
+                $datasUrl = http_build_query($this->datas);
+            }
+
+            if(strpos($this->url, '?') !== false) {
+                $datasUrl = '&'.$datasUrl;
+            }
+            else {
+                $datasUrl = '?'.$datasUrl;
+            }
+
+            $options[CURLOPT_URL] .= $datasUrl;
+            return;
+        }
+        
+        if($this->httpMethod === 'POST') {
+            $options[CURLOPT_POST]       = true;
+            $options[CURLOPT_POSTFIELDS] = $this->datas;
+            
+            return;
+        }
+        
+        //@TODO : Other http status
+    }
 
     /**
      * Run curl call and get informations about call
      * 
      * @return void
      */
-    protected function curlCall()
+    protected function getFromCurl()
     {
         $this->returnDatas   = curl_exec($this->curl);
         $this->curlCallInfos = curl_getinfo($this->curl);
