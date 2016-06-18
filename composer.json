@@ -1,5 +1,5 @@
 {
-    "name": "bulton-fr/CallCurl",
+    "name": "bulton-fr/call-curl",
     "type": "library",
     "description": "Lib to simply use curl with PHP",
     "keywords": [
