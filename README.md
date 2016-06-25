@@ -1,7 +1,7 @@
 # CallCurl
 Lib to simply use curl with PHP
 
-[![Build Status](https://travis-ci.org/bulton-fr/call-curl.svg?branch=master)](https://travis-ci.org/bulton-fr/call-curl) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bulton-fr/call-curl/badges/quality-score.png?b=1.0)](https://scrutinizer-ci.com/g/bulton-fr/call-curl/?branch=1.0) [![Coverage Status](https://coveralls.io/repos/github/bulton-fr/CallCurl/badge.svg?branch=master)](https://coveralls.io/github/bulton-fr/CallCurl?branch=master)
+[![Build Status](https://travis-ci.org/bulton-fr/call-curl.svg?branch=master)](https://travis-ci.org/bulton-fr/call-curl) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bulton-fr/call-curl/badges/quality-score.png?b=1.0)](https://scrutinizer-ci.com/g/bulton-fr/call-curl/?branch=1.0) [![Coverage Status](https://coveralls.io/repos/github/bulton-fr/call-curl/badge.svg?branch=master)](https://coveralls.io/github/bulton-fr/call-curl?branch=master)
 
 ## Install with composer
 
