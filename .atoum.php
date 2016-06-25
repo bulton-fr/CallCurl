@@ -34,7 +34,7 @@ if(file_exists('/home/travis'))
     Publish code coverage report on coveralls.io
     */
     $sources = './src';
-    $token = 'qZjSEIuFxRXkSLPhCwQHOJdiztar466op';
+    $token = 'CYDuDqxFSzlQ5v9axpNt40eTsmAciUFdm';
     $coverallsReport = new reports\asynchronous\coveralls($sources, $token);
     
     /*
