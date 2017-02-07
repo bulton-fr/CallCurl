@@ -63,6 +63,11 @@ class CallCurl
      * @var boolean|array $curlCallInfos : Informations returned by curl
      */
     protected $curlCallInfos;
+    
+    /**
+     * @var array $httpHeaders : Custom headers to send with http request
+     */
+    protected $httpHeaders = [];
 
     /**
      * Constructor
@@ -261,6 +266,16 @@ class CallCurl
     {
         return $this->curlCallInfos;
     }
+    
+    /**
+     * Http header to add on the request
+     * 
+     * @param array $header
+     */
+    public function addHttpHeader($header)
+    {
+        $this->httpHeaders[] = $header;
+    }
 
     /**
      * Run curl call stack
@@ -297,6 +312,7 @@ class CallCurl
         ];
 
         $this->curlOptionsAddDatas($options);
+        $this->curlOptionsAddHttpHeaders($options);
 
         if($this->debug === true) {
             $options[CURLOPT_HEADER]      = true;
@@ -345,6 +361,27 @@ class CallCurl
         }
         
         //@TODO : Other http status
+    }
+    
+    protected function curlOptionsAddHttpHeaders(&$options)
+    {
+        $httpHeader = [];
+        
+        foreach ($this->httpHeaders as $header) {
+            if (is_string($header)) {
+                $httpHeader[] = $header;
+                continue;
+            } elseif (is_array($header)) {
+                $httpHeader[] = $header[0].': '.$header[1];
+                continue;
+            }
+        }
+        
+        if ($httpHeader === []) {
+            return;
+        }
+        
+        $options[CURLOPT_HTTPHEADER] = $httpHeader;
     }
 
     /**

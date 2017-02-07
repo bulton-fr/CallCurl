@@ -359,6 +359,42 @@ class CallCurl extends atoum
                 ]);
     }
     
+    public function testCurlOptionsAddHttpHeaders()
+    {
+        $options = [];
+        $this->assert('curlOptionsAddHttpHeaders without datas')
+            ->variable($this->mock->curlOptionsAddHttpHeaders($options))
+                ->isNull()
+            ->array($options)
+                ->isEqualTo([]);
+        
+        $options = [];
+        $this->assert('curlOptionsAddHttpHeaders with one header')
+            ->if($this->mock->addHttpHeader('X-UNIT-TEST: true'))
+            ->then
+            ->variable($this->mock->curlOptionsAddHttpHeaders($options))
+                ->isNull()
+            ->array($options)
+                ->isEqualTo([
+                    CURLOPT_HTTPHEADER => [
+                        'X-UNIT-TEST: true'
+                    ]
+                ]);
+        
+        $this->assert('curlOptionsAddHttpHeaders with a second header')
+            ->if($this->mock->addHttpHeader(['X-UNIT-TEST2', 'true']))
+            ->then
+            ->variable($this->mock->curlOptionsAddHttpHeaders($options))
+                ->isNull()
+            ->array($options)
+                ->isEqualTo([
+                    CURLOPT_HTTPHEADER => [
+                        'X-UNIT-TEST: true',
+                        'X-UNIT-TEST2: true'
+                    ]
+                ]);
+    }
+    
     public function testGetFromCurl()
     {
         $this->mock->getFromCurl();
@@ -418,6 +454,11 @@ class MockCallCurl extends \bultonFr\CallCurl\CallCurl
     public function curlOptionsAddDatas(&$options)
     {
         return parent::curlOptionsAddDatas($options);
+    }
+    
+    public function curlOptionsAddHttpHeaders(&$options)
+    {
+        return parent::curlOptionsAddHttpHeaders($options);
     }
     
     public function getFromCurl()
